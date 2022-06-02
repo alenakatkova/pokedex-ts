@@ -21,21 +21,23 @@ const updateBtnsAvailability = () => {
     toggleBtnDisableAttribute(nextBtn, nextListUrl === null);
 };
 
-//const pokemon : PokemonDetails = await getPokemonDetails("pikachu");
-let pokemonList = await getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=100", 100);
+let pokemonList = await getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=5", 5);
 let previousListUrl = pokemonList.previous;
 let nextListUrl = pokemonList.next;
 
-const appendPokemonCard = (name: string) => {
+const appendPokemonCard = async (name: string) => {
+    const pokemon : PokemonDetails = await getPokemonDetails(name);
     const clone = <HTMLElement>template.content.cloneNode(true);
     const nameContainer = clone.querySelector(".name");
+    const picture = clone.querySelector(".picture");
+    picture.setAttribute("src", pokemon.sprites.front_default)
     nameContainer.textContent = name;
     board.appendChild(clone);
 };
 
 const fillBoardWithPokemons = (pokemons: Pokemon[]) => {
-    pokemons.map((pokemon) => {
-        appendPokemonCard(pokemon.name)
+    pokemons.map(async (pokemon) => {
+        await appendPokemonCard(pokemon.name)
     })
 }
 
@@ -43,12 +45,11 @@ fillBoardWithPokemons(pokemonList.results);
 updateBtnsAvailability();
 
 const changePage = async (url: string) => {
-    pokemonList = await getPokemons(url, 100);
+    pokemonList = await getPokemons(url, 5);
     nextListUrl = pokemonList.next;
     previousListUrl = pokemonList.previous;
     board.innerHTML = "";
     fillBoardWithPokemons(pokemonList.results);
-    //board.innerText = JSON.stringify(pokemonList);
     updateBtnsAvailability();
 }
 

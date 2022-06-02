@@ -5,8 +5,14 @@ interface Ability {
     };
 }
 
+interface Sprites {
+    back_default?: string;
+    front_default?: string;
+}
+
 export default interface PokemonDetails {
     abilities: Array<Ability>
     name: string;
     height: number;
+    sprites: Sprites;
 }

@@ -21,7 +21,7 @@ const updateBtnsAvailability = () => {
 };
 
 //const pokemon : PokemonDetails = await getPokemonDetails("pikachu");
-let pokemonList : PokemonList = await getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=100"); //TODO do not change limit
+let pokemonList = await getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=100", 100);
 let previousListUrl = pokemonList.previous;
 let nextListUrl = pokemonList.next;
 
@@ -29,7 +29,7 @@ board.innerText = JSON.stringify(pokemonList)
 updateBtnsAvailability();
 
 const changePage = async (url: string) => {
-    pokemonList = await getPokemons(url);
+    pokemonList = await getPokemons(url, 100);
     nextListUrl = pokemonList.next;
     previousListUrl = pokemonList.previous;
     board.innerText = JSON.stringify(pokemonList);

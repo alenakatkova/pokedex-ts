@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "es2022",
     "target": "es2017",
     "sourceMap": true,
     "allowJs": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
   }
 }

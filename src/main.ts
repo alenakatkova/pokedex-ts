@@ -8,8 +8,8 @@ let previousListUrl: string | null;
 let nextListUrl: string | null;
 
 async function changePage(url: string) {
-    const container = document.getElementById("container");
-    const pokemonList = await getPokemons(url, 5);
+    const container = document.getElementById("content-container");
+    const pokemonList = await getPokemons(url, 10);
     nextListUrl = pokemonList.next;
     previousListUrl = pokemonList.previous;
     container.innerHTML = "";
@@ -30,7 +30,7 @@ export function addButtonsEventListeners() {
 }
 
 function retrieveInitialPokemonList(): Promise<PokemonList> {
-    return getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=5", 5);
+    return getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10", 10);
 }
 
 export async function run() {

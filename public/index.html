@@ -1,11 +1,31 @@
 <html>
 <body>
-<div id="container"></div>
-<button id="previous">Previous</button><button id="next">Next</button>
+<div class="page-container">
+    <button id="previous">Previous</button>
+    <div id="content-container"></div>
+    <button id="next">Next</button>
+</div>
+
 <template id="card">
-  <div>
-      <div class="name"></div>
-      <img src="" alt="Pokemon Photo" class="picture">
+  <div class="pokemon-card">
+      <div class="picture-container">
+          <img src="" alt="Pokemon Photo" class="picture">
+      </div>
+      <div class="short-description-container">
+          <div class="name"></div>
+          <div class="height-container">
+              <span class="height-header">Height:</span>
+              <span class="height"></span>
+          </div>
+          <div class="weight-container">
+              <span class="weight-header">Weight:</span>
+              <span class="weight"></span>
+          </div>
+          <div class="abilities-container">
+              <p class="abilities-header">Abilities:</p>
+              <ul class="abilities-list"><li class="ability-name"></li></ul>
+          </div>
+      </div>
   </div>
 </template>
 </body>

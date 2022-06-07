@@ -1,4 +1,58 @@
-body {
-    color: white;
-    background-color: black;
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+#content-container {
+    width: 78%;
+}
+
+#previous, #next {
+    width: 10%;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    /*min-height: 100vh;*/
+}
+
+.pokemon-card {
+    position: relative;
+    border-radius: 40px;
+    width: 18%;
+    /*padding: 10px;*/
+    margin: 20px 0;
+    -webkit-box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
+    box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
+}
+
+.picture-container {
+    /*width: 100%;*/
+    position: absolute;
+    top: 20px;
+    right: 0;
+    /*padding: 10px;*/
+}
+
+.picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 96px;
+    height: 96px;
+}
+
+.short-description-container {
+    padding: 10px;
 }

@@ -24,14 +24,15 @@ export default function fillBoardWithPokemons(pokemons: Pokemon[]) {
             return fulfilledResults.map(fulfilledResult => fulfilledResult.value)
         })
         .then(cards => {
-            const board = <HTMLElement>document.createElement("div")
+            const board = <HTMLElement>document.createElement("div");
+            board.setAttribute("class", "board");
             for (let card of cards) {
-                board.appendChild(createCardTemplate(card, CARD_TEMPLATE))
+                board.appendChild(createCardTemplate(card, CARD_TEMPLATE));
             }
             return board;
         })
         .then(board => {
-            const container = document.getElementById("container");
+            const container = document.getElementById("content-container");
             container.appendChild(board)
         })
 };

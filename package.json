@@ -5,7 +5,8 @@
     "start": "webpack serve --open"
   },
   "dependencies": {
-    "axios": "^0.27.2"
+    "axios": "^0.27.2",
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "css-loader": "^6.7.1",

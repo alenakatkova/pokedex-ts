@@ -14,5 +14,6 @@ export default interface PokemonDetails {
     abilities: Array<Ability>
     name: string;
     height: number;
+    weight: number;
     sprites: Sprites;
 }

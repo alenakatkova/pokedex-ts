@@ -13,21 +13,20 @@ function createCardTemplate(pokemon: PokemonDetails, template: HTMLTemplateEleme
     return clone;
 }
 
-export function fillBoardWithPokemons(pokemons: Pokemon[]) {
+export default function fillBoardWithPokemons(pokemons: Pokemon[]) {
     const promises = pokemons.map(pokemon => {
         return getPokemonDetails(pokemon.name)
     })
     Promise
-        .all(promises)
-        .then(pokemons => {
-            return pokemons.map(pokemon => {
-                return createCardTemplate(pokemon, CARD_TEMPLATE)
-            })
+        .allSettled(promises)
+        .then(result => {
+            const fulfilledResults = result.filter(pok => pok.status === "fulfilled") as PromiseFulfilledResult<PokemonDetails>[]
+            return fulfilledResults.map(fulfilledResult => fulfilledResult.value)
         })
         .then(cards => {
             const board = <HTMLElement>document.createElement("div")
             for (let card of cards) {
-                board.appendChild(card)
+                board.appendChild(createCardTemplate(card, CARD_TEMPLATE))
             }
             return board;
         })
@@ -35,4 +34,4 @@ export function fillBoardWithPokemons(pokemons: Pokemon[]) {
             const container = document.getElementById("container");
             container.appendChild(board)
         })
-}
+};

@@ -1,5 +1,5 @@
 import getPokemons from "./api/getPokemons";
-import {fillBoardWithPokemons} from "./fillBoardWithPokemons";
+import fillBoardWithPokemons from "./fillBoardWithPokemons";
 import {updateBtnsAvailability} from "./pagination";
 import {PokemonList} from "./interfaces/PokemonList";
 
@@ -8,11 +8,11 @@ let previousListUrl: string | null;
 let nextListUrl: string | null;
 
 async function changePage(url: string) {
-    const board = document.getElementById("board");
+    const container = document.getElementById("container");
     const pokemonList = await getPokemons(url, 5);
     nextListUrl = pokemonList.next;
     previousListUrl = pokemonList.previous;
-    board.innerHTML = "";
+    container.innerHTML = "";
     fillBoardWithPokemons(pokemonList.results);
     updateBtnsAvailability(previousListUrl, nextListUrl);
 }
@@ -37,6 +37,7 @@ export async function run() {
     pokemonList = await retrieveInitialPokemonList();
     previousListUrl = pokemonList.previous;
     nextListUrl = pokemonList.next;
+    console.log(pokemonList, previousListUrl, nextListUrl)
     fillBoardWithPokemons(pokemonList.results);
     updateBtnsAvailability(previousListUrl, nextListUrl);
     addButtonsEventListeners();

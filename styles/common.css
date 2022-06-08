@@ -19,7 +19,6 @@
 }
 
 .board {
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     padding: 0 20px;

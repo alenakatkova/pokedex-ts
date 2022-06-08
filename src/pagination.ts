@@ -1,5 +1,9 @@
 import getPokemons from "./api/getPokemons";
-import {fillBoardWithPokemons, fillBoardWithPokemonsWithTimeout} from "./fillBoardWithPokemons";
+import {renderCardsSequentiallyWithTimeout} from "./renderBoard/renderCardsSequentiallyWithTimeout";
+import {renderCardsSimultaneously} from "./renderBoard/renderCardsSimultaneously";
+
+const PREVIOUS_BTN = document.getElementById("previous");
+const NEXT_BTN = document.getElementById("next");
 
 function toggleBtnDisableAttribute(btn: HTMLElement, shouldBeDisabled: boolean) {
     if (shouldBeDisabled) {
@@ -9,22 +13,30 @@ function toggleBtnDisableAttribute(btn: HTMLElement, shouldBeDisabled: boolean) 
     }
 }
 
-// TODO disable btns when mode is not chosen
-export function updateBtnsAvailability(previousUrl: string, nextUrl: string) {
-    const prevBtn = document.getElementById("previous");
-    const nextBtn = document.getElementById("next");
-    toggleBtnDisableAttribute(prevBtn, previousUrl === null);
-    toggleBtnDisableAttribute(nextBtn, nextUrl === null);
+export function setBtnsAvailability() {
+    toggleBtnDisableAttribute(
+        PREVIOUS_BTN,
+        window.PREV_LIST_URL === null || window.PREV_LIST_URL === undefined
+    );
+    toggleBtnDisableAttribute(
+        NEXT_BTN,
+        window.NEXT_LIST_URL === null || window.NEXT_LIST_URL === undefined
+    );
 }
 
 async function changePage(url: string) {
     const container = document.getElementById("content-container");
     const pokemonList = await getPokemons(url, 10);
+    window.POKEMON_LIST = pokemonList;
     window.NEXT_LIST_URL = pokemonList.next;
     window.PREV_LIST_URL = pokemonList.previous;
     container.innerHTML = "";
-    fillBoardWithPokemons(pokemonList.results);
-    updateBtnsAvailability(window.PREV_LIST_URL, window.NEXT_LIST_URL);
+    if (window.MODE === "simultaneous") {
+        renderCardsSimultaneously(window.POKEMON_LIST.results);
+    } else if (window.MODE === "withTimeout") {
+        renderCardsSequentiallyWithTimeout(window.POKEMON_LIST.results)
+    }
+    setBtnsAvailability();
 }
 
 async function handleNextBtnClick() {
@@ -36,15 +48,11 @@ async function handlePrevBtnClick() {
 }
 
 export function addPageBtnsListeners() {
-    const prevBtn = document.getElementById("previous");
-    const nextBtn = document.getElementById("next");
-    nextBtn.addEventListener("click", handleNextBtnClick);
-    prevBtn.addEventListener("click", handlePrevBtnClick);
+    NEXT_BTN.addEventListener("click", handleNextBtnClick);
+    PREVIOUS_BTN.addEventListener("click", handlePrevBtnClick);
 }
 
 export function removePageBtnsListeners() {
-    const prevBtn = document.getElementById("previous");
-    const nextBtn = document.getElementById("next");
-    nextBtn.removeEventListener("click", handleNextBtnClick);
-    prevBtn.removeEventListener("click", handlePrevBtnClick);
+    NEXT_BTN.removeEventListener("click", handleNextBtnClick);
+    PREVIOUS_BTN.removeEventListener("click", handlePrevBtnClick);
 }

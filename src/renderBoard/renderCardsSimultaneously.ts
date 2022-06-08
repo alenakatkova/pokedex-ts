@@ -1,8 +1,8 @@
 import {Pokemon} from "../interfaces/PokemonList";
-import {appendBoard, CARD_TEMPLATE, createBoard, createCardTemplate, getArrayOfPokemonDetails} from "./common";
+import {appendBoard, CARD_TEMPLATE, createBoard, createCardTemplate, getDetailedPokemons} from "./common";
 
 export function renderCardsSimultaneously(pokemons: Pokemon[]) {
-    getArrayOfPokemonDetails(pokemons)
+    getDetailedPokemons(pokemons)
         .then(cards => {
             const board = createBoard();
             for (let card of cards) {

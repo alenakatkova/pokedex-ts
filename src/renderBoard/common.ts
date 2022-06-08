@@ -1,5 +1,5 @@
 import {Pokemon} from "../interfaces/PokemonList";
-import getPokemonDetails from "../api/getPokemonDetails";
+import fetchPokemonDetails from "../api/getPokemonDetails";
 import PokemonDetails from "../interfaces/PokemonDetails";
 
 export const CARD_TEMPLATE = <HTMLTemplateElement>document.getElementById("card");
@@ -24,19 +24,15 @@ export function appendBoard(board: HTMLElement) {
     container.appendChild(board);
 }
 
-function getPokemonsPromises(pokemons: Pokemon[]) {
-    return pokemons.map(pokemon => {
-        return getPokemonDetails(pokemon.name)
+export function getDetailedPokemons(nonDetailedPokemons: Pokemon[]): Promise<PokemonDetails[]> {
+    const detailedPokemons : Promise<PokemonDetails>[] = nonDetailedPokemons.map(pokemon => {
+        return fetchPokemonDetails(pokemon.name)
     });
-}
-
-export function getArrayOfPokemonDetails(nonDetailedPokemons: Pokemon[]): Promise<PokemonDetails[]> {
-    const promises = getPokemonsPromises(nonDetailedPokemons);
     return Promise
-        .allSettled(promises)
+        .allSettled(detailedPokemons)
         .then(results => {
             const fulfilledResults = results
-                .filter(result => result.status === "fulfilled") as PromiseFulfilledResult<PokemonDetails>[]
+                .filter(result => result.status === "fulfilled") as PromiseFulfilledResult<PokemonDetails>[];
             return fulfilledResults.map(fulfilledResult => fulfilledResult.value)
         })
 }

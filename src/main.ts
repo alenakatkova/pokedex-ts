@@ -4,12 +4,12 @@ import {Pokemon, PokemonList} from "./interfaces/PokemonList";
 import {renderCardsSequentiallyWithTimeout} from "./renderBoard/renderCardsSequentiallyWithTimeout";
 import {renderCardsSimultaneously} from "./renderBoard/renderCardsSimultaneously";
 
-function retrieveInitialPokemonList(): Promise<PokemonList> {
+function fetchInitialPokemonList(): Promise<PokemonList> {
     return getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10", 10);
 }
 
-async function run() {
-    window.POKEMON_LIST = await retrieveInitialPokemonList();
+async function renderPokemonsWithoutTimeout() {
+    window.POKEMON_LIST = await fetchInitialPokemonList();
     window.PREV_LIST_URL = window.POKEMON_LIST.previous;
     window.NEXT_LIST_URL = window.POKEMON_LIST.next;
     renderCardsSimultaneously(window.POKEMON_LIST.results);
@@ -17,8 +17,8 @@ async function run() {
     addPageBtnsListeners();
 }
 
-async function runWithTimout() {
-    window.POKEMON_LIST = await retrieveInitialPokemonList();
+async function renderPokemonsWithTimeout() {
+    window.POKEMON_LIST = await fetchInitialPokemonList();
     window.PREV_LIST_URL = window.POKEMON_LIST.previous;
     window.NEXT_LIST_URL = window.POKEMON_LIST.next;
     renderCardsSequentiallyWithTimeout(window.POKEMON_LIST.results);
@@ -26,9 +26,9 @@ async function runWithTimout() {
     addPageBtnsListeners();
 }
 
-export function handleModeChange() {
-    const modeChoiceForm = <HTMLFormElement>document.getElementById("mode-choice-form");
+export function handleSubmit() {
     const container = document.getElementById("content-container");
+    const modeChoiceForm = <HTMLFormElement>document.getElementById("mode-choice-form");
 
     modeChoiceForm.addEventListener("submit", async function (e: Event) {
         e.preventDefault();
@@ -37,9 +37,9 @@ export function handleModeChange() {
         const formData = new FormData(modeChoiceForm);
         window.MODE = <string>formData.get("mode");
         if (window.MODE === "simultaneous") {
-            await run();
+            await renderPokemonsWithoutTimeout();
         } else if (window.MODE === "withTimeout") {
-            await runWithTimout();
+            await renderPokemonsWithTimeout();
         }
     }, false);
 }

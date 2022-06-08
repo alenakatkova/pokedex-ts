@@ -1,5 +1,5 @@
 import {Pokemon} from "../interfaces/PokemonList";
-import {appendBoard, CARD_TEMPLATE, createBoard, createCardTemplate, getArrayOfPokemonDetails} from "./common";
+import {appendBoard, CARD_TEMPLATE, createBoard, createCardTemplate, getDetailedPokemons} from "./common";
 import PokemonDetails from "../interfaces/PokemonDetails";
 
 function delayPokemonInsertion(pokemonDetails: PokemonDetails, board: HTMLElement, delayInSeconds: number) {
@@ -11,10 +11,10 @@ function delayPokemonInsertion(pokemonDetails: PokemonDetails, board: HTMLElemen
 export function renderCardsSequentiallyWithTimeout(pokemons: Pokemon[]) {
     const board = createBoard();
     appendBoard(board);
-    getArrayOfPokemonDetails(pokemons)
-        .then(cards => {
-            for (let i = 0; i < cards.length; i++) {
-                delayPokemonInsertion(cards[i], board, i)
+    getDetailedPokemons(pokemons)
+        .then(detailedPokemon => {
+            for (let i = 0; i < detailedPokemon.length; i++) {
+                delayPokemonInsertion(detailedPokemon[i], board, i)
             }
         })
 }

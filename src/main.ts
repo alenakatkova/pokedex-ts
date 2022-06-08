@@ -3,15 +3,6 @@ import fillBoardWithPokemons from "./fillBoardWithPokemons";
 import {updateBtnsAvailability} from "./pagination";
 import {PokemonList} from "./interfaces/PokemonList";
 
-declare global {
-    interface Window {
-        MODE: string | null;
-        POKEMON_LIST: PokemonList;
-        PREV_LIST_URL: string | null;
-        NEXT_LIST_URL: string | null;
-    }
-}
-
 async function changePage(url: string) {
     const container = document.getElementById("content-container");
     const pokemonList = await getPokemons(url, 10);

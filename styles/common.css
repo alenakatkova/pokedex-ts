@@ -10,7 +10,7 @@
     min-height: 100vh;
 }
 
-#content-container {
+.middle {
     width: 78%;
 }
 
@@ -55,4 +55,8 @@
 
 .short-description-container {
     padding: 10px;
+}
+
+.mode-choice {
+    width: 100%;
 }

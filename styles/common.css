@@ -19,15 +19,7 @@
 }
 
 .board {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 20px;
-    flex-wrap: wrap;
-    /*min-height: 100vh;*/
-}
-
-.board-with-timeout {
+    border: 1px solid red;
     display: flex;
     flex-direction: row;
     padding: 0 20px;
@@ -37,19 +29,21 @@
 .pokemon-card {
     position: relative;
     border-radius: 40px;
-    width: 18%;
-    /*padding: 10px;*/
-    margin: 20px 0;
+    width: 17.6%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     -webkit-box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
     box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
 }
 
+.pokemon-card:not(:nth-child(5n)) {
+    margin-right: 3%;
+}
+
 .picture-container {
-    /*width: 100%;*/
     position: absolute;
     top: 20px;
     right: 0;
-    /*padding: 10px;*/
 }
 
 .picture {

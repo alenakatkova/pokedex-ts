@@ -15,7 +15,7 @@ function createCardTemplate(pokemon: PokemonDetails, template: HTMLTemplateEleme
 
 export function fillBoardWithPokemonsWithTimeout(pokemons: Pokemon[]) {
     const board = <HTMLElement>document.createElement("div");
-    board.setAttribute("class", "board-with-timeout");
+    board.setAttribute("class", "board");
     const container = document.getElementById("content-container");
     container.appendChild(board);
     for(let i = 0; i < pokemons.length; i++) {

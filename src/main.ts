@@ -17,7 +17,6 @@ async function run() {
 }
 
 async function runWithTimout() {
-    console.log("running with timeout")
     window.POKEMON_LIST = await retrieveInitialPokemonList();
     window.PREV_LIST_URL = window.POKEMON_LIST.previous;
     window.NEXT_LIST_URL = window.POKEMON_LIST.next;

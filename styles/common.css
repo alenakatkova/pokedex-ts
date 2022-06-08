@@ -27,6 +27,13 @@
     /*min-height: 100vh;*/
 }
 
+.board-with-timeout {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
 .pokemon-card {
     position: relative;
     border-radius: 40px;

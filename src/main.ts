@@ -1,7 +1,7 @@
 import getPokemons from "./api/getPokemons";
-import fillBoardWithPokemons from "./fillBoardWithPokemons";
+import {fillBoardWithPokemons, fillBoardWithPokemonsWithTimeout} from "./fillBoardWithPokemons";
 import {addPageBtnsListeners, removePageBtnsListeners, updateBtnsAvailability} from "./pagination";
-import {PokemonList} from "./interfaces/PokemonList";
+import {Pokemon, PokemonList} from "./interfaces/PokemonList";
 
 function retrieveInitialPokemonList(): Promise<PokemonList> {
     return getPokemons("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10", 10);
@@ -16,6 +16,16 @@ async function run() {
     addPageBtnsListeners();
 }
 
+async function runWithTimout() {
+    console.log("running with timeout")
+    window.POKEMON_LIST = await retrieveInitialPokemonList();
+    window.PREV_LIST_URL = window.POKEMON_LIST.previous;
+    window.NEXT_LIST_URL = window.POKEMON_LIST.next;
+    fillBoardWithPokemonsWithTimeout(window.POKEMON_LIST.results);
+    updateBtnsAvailability(window.PREV_LIST_URL, window.NEXT_LIST_URL);
+    addPageBtnsListeners();
+}
+
 export function handleModeChange() {
     const modeChoiceForm = <HTMLFormElement>document.getElementById("mode-choice-form");
     const container = document.getElementById("content-container");
@@ -26,11 +36,11 @@ export function handleModeChange() {
         removePageBtnsListeners();
         const formData = new FormData(modeChoiceForm);
         window.MODE = <string>formData.get("mode");
-        console.log(window.MODE)
         if (window.MODE === "simultaneous") {
             await run();
         } else if (window.MODE === "withTimeout") {
             console.log("withTimeout");
+            runWithTimout();
         }
     }, false);
 }

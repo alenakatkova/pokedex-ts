@@ -13,10 +13,30 @@ function createCardTemplate(pokemon: PokemonDetails, template: HTMLTemplateEleme
     return clone;
 }
 
-export default function fillBoardWithPokemons(pokemons: Pokemon[]) {
+export function fillBoardWithPokemonsWithTimeout(pokemons: Pokemon[]) {
+    const board = <HTMLElement>document.createElement("div");
+    board.setAttribute("class", "board-with-timeout");
+    const container = document.getElementById("content-container");
+    container.appendChild(board);
+    for(let i = 0; i < pokemons.length; i++) {
+        delay(i, pokemons[i])
+    }
+
+    function delay(i: number, pokemon: Pokemon) {
+        setTimeout(() => {
+            Promise
+                .resolve(getPokemonDetails(pokemon.name))
+                .then(res => {
+                    board.appendChild(createCardTemplate(res, CARD_TEMPLATE));
+                })
+        }, i * 1000);
+    }
+}
+
+export function fillBoardWithPokemons(pokemons: Pokemon[]) {
     const promises = pokemons.map(pokemon => {
         return getPokemonDetails(pokemon.name)
-    })
+    });
     Promise
         .allSettled(promises)
         .then(result => {

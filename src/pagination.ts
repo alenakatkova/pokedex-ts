@@ -1,5 +1,5 @@
 import getPokemons from "./api/getPokemons";
-import fillBoardWithPokemons from "./fillBoardWithPokemons";
+import {fillBoardWithPokemons, fillBoardWithPokemonsWithTimeout} from "./fillBoardWithPokemons";
 
 function toggleBtnDisableAttribute(btn: HTMLElement, shouldBeDisabled: boolean) {
     if (shouldBeDisabled) {

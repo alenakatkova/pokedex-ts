@@ -1,4 +1,4 @@
-import getPokemons from "./api/getPokemons";
+import getPokemons from "./api/fetchPokemons";
 import {renderCardsSequentiallyWithTimeout} from "./renderBoard/renderCardsSequentiallyWithTimeout";
 import {renderCardsSimultaneously} from "./renderBoard/renderCardsSimultaneously";
 

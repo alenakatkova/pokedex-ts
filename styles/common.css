@@ -4,7 +4,7 @@
     --upper-block-bg-color: #B4C5E4;
     --bottom-block-bg-color: #3066BE;
     --primary-text-color: #32292F;
-    --secondary-text-color: #F0F7F4;
+    --secondary-text-color: #FBFFF1;
     --btn-active-bg-color: #D8DDDE;
     --btn-on-hover-bg-color: #B2BBBD ;
 
@@ -111,4 +111,8 @@
 
 .mode-choice {
     width: 100%;
+}
+
+.ability-name {
+    text-transform: capitalize;
 }

@@ -1,4 +1,4 @@
-import getPokemons from "./api/getPokemons";
+import getPokemons from "./api/fetchPokemons";
 import {addPageBtnsListeners, removePageBtnsListeners, setBtnsAvailability} from "./pagination";
 import {Pokemon, PokemonList} from "./interfaces/PokemonList";
 import {renderCardsSequentiallyWithTimeout} from "./renderBoard/renderCardsSequentiallyWithTimeout";

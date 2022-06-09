@@ -1,7 +1,9 @@
 <html>
 <body>
 <div class="page-container">
-    <button id="previous">Previous</button>
+    <div class="page-button-container">
+        <button id="page-button-previous">Previous</button>
+    </div>
     <div class="middle">
         <div class="mode-choice">
             <form id="mode-choice-form">
@@ -20,16 +22,17 @@
         </div>
         <div id="content-container"></div>
     </div>
-    <button id="next">Next</button>
+    <div class="page-button-container">
+        <button id="page-button-next">Next</button>
+    </div>
 </div>
 
 <template id="card">
   <div class="pokemon-card">
-      <div class="picture-container">
-          <img src="" alt="Pokemon Photo" class="picture">
-      </div>
-      <div class="short-description-container">
-          <div class="name"></div>
+      <div class="upper-block">
+          <div class="picture-container">
+              <img src="" alt="Pokemon Photo" class="picture">
+          </div>
           <div class="height-container">
               <span class="height-header">Height:</span>
               <span class="height"></span>
@@ -37,6 +40,11 @@
           <div class="weight-container">
               <span class="weight-header">Weight:</span>
               <span class="weight"></span>
+          </div>
+      </div>
+      <div class="bottom-block">
+          <div class="name-container">
+              <span class="name"></span>
           </div>
           <div class="abilities-container">
               <p class="abilities-header">Abilities:</p>

@@ -2,8 +2,8 @@ import getPokemons from "./api/getPokemons";
 import {renderCardsSequentiallyWithTimeout} from "./renderBoard/renderCardsSequentiallyWithTimeout";
 import {renderCardsSimultaneously} from "./renderBoard/renderCardsSimultaneously";
 
-const PREVIOUS_BTN = document.getElementById("previous");
-const NEXT_BTN = document.getElementById("next");
+const PREVIOUS_BTN = document.getElementById("page-button-previous");
+const NEXT_BTN = document.getElementById("page-button-next");
 
 function toggleBtnDisableAttribute(btn: HTMLElement, shouldBeDisabled: boolean) {
     if (shouldBeDisabled) {

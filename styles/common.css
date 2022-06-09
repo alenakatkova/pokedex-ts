@@ -1,17 +1,20 @@
 :root {
     --main-bg-color: #F0F7F4;
-    --card-border-radius: 40px;
-    --upper-block-bg-color: #B4C5E4;
-    --bottom-block-bg-color: #3066BE;
-    --primary-text-color: #32292F;
-    --secondary-text-color: #FBFFF1;
+    --card-border-radius: 30px;
+    --card-primary-padding: 30px;
+    --primary-text-color: #3C3744;
+    --secondary-text-color: #F9FFEB;
     --btn-active-bg-color: #D8DDDE;
     --btn-on-hover-bg-color: #B2BBBD ;
-
 }
 
 *, *:before, *:after {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
 }
 
 .page-container {
@@ -24,12 +27,22 @@
 
 .page-button-container {
     width: 11%;
+    background-color: var(--main-bg-color);
 }
 
 #page-button-next, #page-button-previous {
     width: 100%;
     height: 100%;
     border: none;
+    background-color: var(--btn-active-bg-color);
+    transition: all .4s ease-in-out;
+}
+
+#page-button-next:not(:disabled):hover,
+#page-button-previous:not(:disabled):hover {
+    background-color: var(--btn-on-hover-bg-color);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
 }
 
 .middle {
@@ -44,7 +57,7 @@
 .board {
     display: flex;
     flex-direction: row;
-    padding: 0 20px;
+    padding: 0 60px;
     flex-wrap: wrap;
 }
 
@@ -55,16 +68,22 @@
     margin-bottom: 20px;
     -webkit-box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
     box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
-
     display: flex;
     flex-direction: column;
-    /*align-content: stretch;*/
+    font-weight: 200;
+    transition: all .4s ease-in-out;
+}
+
+.pokemon-card:hover {
+    box-shadow: 14px 14px 18px 0 rgba(0, 0, 0, 0.53);
+    cursor: pointer;
+    transition: all .4s ease-in-out;
 }
 
 .upper-block {
     flex: 1 1 auto;
     position: relative;
-    background-color: var(--upper-block-bg-color);
+    background-image: linear-gradient(135deg, #E1E8F4, #88A3D3);
     padding: 40px;
     border-top-left-radius: var(--card-border-radius);
     border-top-right-radius: var(--card-border-radius);
@@ -73,8 +92,8 @@
 
 .bottom-block {
     flex: 1 1 auto;
-    background-color: var(--bottom-block-bg-color);
-    padding: 10px 40px 40px;
+    background-image: linear-gradient(45deg, #6C96DA, #254F93);
+    padding: 0 var(--card-primary-padding) var(--card-primary-padding);
     border-bottom-left-radius: var(--card-border-radius);
     border-bottom-right-radius: var(--card-border-radius);
     color: var(--secondary-text-color);
@@ -91,10 +110,13 @@
 }
 
 .name-container {
+    margin: 48px 0;
 }
 
 .name {
     text-transform: uppercase;
+    font-weight: 400;
+    font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
 .picture {
@@ -113,6 +135,35 @@
     width: 100%;
 }
 
+.abilities-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.abilities-header {
+    font-weight: 400;
+}
+
 .ability-name {
     text-transform: capitalize;
+    margin-bottom: 5px;
+    background-color: #88A3D3;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.ability-name:not(:last-child) {
+    margin-right: 5px;
+}
+
+.height-container {
+    margin-bottom: 10px;
+}
+
+.height-header, .weight-header {
+    font-weight: 400;
 }

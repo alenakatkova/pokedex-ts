@@ -1,11 +1,18 @@
+/*variables*/
 :root {
     --main-bg-color: #F0F7F4;
     --card-border-radius: 30px;
     --card-primary-padding: 30px;
     --primary-text-color: #3C3744;
     --secondary-text-color: #F9FFEB;
-    --btn-active-bg-color: #D8DDDE;
-    --btn-on-hover-bg-color: #B2BBBD ;
+    --primary-page-btn-color: #80ADA0;
+    --secondary-page-btn-color: #6C96DA;
+    --page-btn-content-color: #B5CFC7;
+}
+
+/*common*/
+html {
+    font-size: 100%;
 }
 
 *, *:before, *:after {
@@ -17,6 +24,7 @@ body {
     font-weight: 400;
 }
 
+/*page layout*/
 .page-container {
     display: flex;
     flex-direction: row;
@@ -25,43 +33,83 @@ body {
     min-height: 100vh;
 }
 
+.middle {
+    width: 78%;
+    background-color: var(--main-bg-color);
+    padding: 50px;
+}
+
 .page-button-container {
     width: 11%;
     background-color: var(--main-bg-color);
 }
 
+/*page change buttons*/
 #page-button-next, #page-button-previous {
     width: 100%;
     height: 100%;
     border: none;
-    background-color: var(--btn-active-bg-color);
+    background-image: linear-gradient(45deg, var(--secondary-page-btn-color), var(--primary-page-btn-color));
     transition: all .4s ease-in-out;
 }
 
 #page-button-next:not(:disabled):hover,
 #page-button-previous:not(:disabled):hover {
-    background-color: var(--btn-on-hover-bg-color);
+    background-image: linear-gradient(45deg, var(--primary-page-btn-color), var(--secondary-page-btn-color));
     cursor: pointer;
     transition: all .4s ease-in-out;
 }
 
-.middle {
-    width: 78%;
-    background-color: var(--main-bg-color);
+#page-button-next:disabled,
+#page-button-previous:disabled,
+#page-button-previous:disabled .left-arrow-svg,
+#page-button-next:disabled .right-arrow-svg {
+    opacity: 40%;
 }
 
-#previous, #next {
-    width: 10%;
+.right-arrow-svg, .left-arrow-svg {
+    width: 100px;
+    fill: var(--page-btn-content-color);
+    transition: all .4s ease-in-out;
 }
 
+#page-button-next:not(:disabled):hover .right-arrow-svg,
+#page-button-previous:not(:disabled):hover .left-arrow-svg {
+    width: 120px;
+    transition: all .4s ease-in-out;
+}
+
+/*mode choice*/
+.mode-choice-container {
+    margin-bottom: 50px;
+}
+
+.mode-choice-header {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size: 32px;
+}
+
+.mode-choice-radio-btns-container {
+    border: none;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+
+
+/*pokedex board*/
 .board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 1fr;
-    grid-gap: 20px;
-    padding: 0 50px;
+    grid-gap: 30px;
 }
 
+/*pokedex board card*/
 .pokemon-card {
     border-radius: var(--card-border-radius);
     -webkit-box-shadow: 4px 4px 18px 0 rgba(0, 0, 0, 0.53);
@@ -78,6 +126,7 @@ body {
     transition: all .4s ease-in-out;
 }
 
+/*pokedex board card main blocks*/
 .bottom-block {
     flex-grow: 1;
     background-image: linear-gradient(45deg, #6C96DA, #254F93);
@@ -97,12 +146,19 @@ body {
     color: var(--primary-text-color);
 }
 
-
-
+/*pokedex board card smaller blocks*/
 .picture-container {
     position: absolute;
     bottom: -48px;
     right: 0;
+}
+
+.picture {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 96px;
+    height: 96px;
 }
 
 .name-container {
@@ -115,20 +171,8 @@ body {
     font-family: 'Kdam Thmor Pro', sans-serif;
 }
 
-.picture {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 96px;
-    height: 96px;
-}
-
 .short-description-container {
     padding: 10px;
-}
-
-.mode-choice {
-    width: 100%;
 }
 
 .abilities-list {

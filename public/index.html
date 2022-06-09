@@ -7,20 +7,41 @@
 <body>
 <div class="page-container">
     <div class="page-button-container">
-        <button id="page-button-previous">Previous</button>
+        <button id="page-button-previous">
+            <svg
+                    class="left-arrow-svg"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 490 490"
+                    style="enable-background:new 0 0 490 490;"
+                    xml:space="preserve"
+            >
+                <g>
+                    <g>
+                        <g>
+                            <polygon points="249.888,490 8.139,244.996 249.888,0 481.861,0 239.71,244.996 481.861,490 			"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </button>
     </div>
     <div class="middle">
-        <div class="mode-choice">
+        <div class="mode-choice-container">
             <form id="mode-choice-form">
-                <p>Mode choice:</p>
-                <fieldset>
-                    <input type="radio" id="mode1"
-                           name="mode" value="simultaneous">
-                    <label for="mode1">Simultaneously</label>
+                <p class="mode-choice-header">Mode choice:</p>
+                <fieldset class="mode-choice-radio-btns-container">
+                    <label>
+                        <input type="radio" name="mode" value="simultaneous">
+                        Simultaneously
+                    </label>
 
-                    <input type="radio" id="mode2"
-                           name="mode" value="withTimeout">
-                    <label for="mode2">With timeout</label>
+                    <label>
+                        <input type="radio" name="mode" value="withTimeout">
+                        With timeout
+                    </label>
                 </fieldset>
                 <button type="submit">Submit</button>
             </form>
@@ -28,7 +49,25 @@
         <div id="content-container"></div>
     </div>
     <div class="page-button-container">
-        <button id="page-button-next">Next</button>
+        <button id="page-button-next">
+            <svg
+                    class="right-arrow-svg"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 490 490"
+                    style="enable-background:new 0 0 490 490;"
+                    xml:space="preserve">
+                <g>
+                    <g>
+                        <g>
+                            <polygon points="240.112,0 481.861,245.004 240.112,490 8.139,490 250.29,245.004 8.139,0 			"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </button>
     </div>
 </div>
 

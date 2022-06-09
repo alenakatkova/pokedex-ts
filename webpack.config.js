@@ -24,7 +24,6 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader'
                 ],
-                exclude: /node_modules/,
             },
         ],
     },

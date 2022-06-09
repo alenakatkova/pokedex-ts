@@ -55,15 +55,10 @@ body {
 }
 
 .board {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*flex-wrap: wrap;*/
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: 1fr;
     grid-gap: 20px;
-    /*justify-items: stretch;*/
-    /*align-items: stretch;*/
     padding: 0 50px;
 }
 
@@ -83,8 +78,17 @@ body {
     transition: all .4s ease-in-out;
 }
 
+.bottom-block {
+    flex-grow: 1;
+    background-image: linear-gradient(45deg, #6C96DA, #254F93);
+    padding: 0 var(--card-primary-padding) var(--card-primary-padding);
+    border-bottom-left-radius: var(--card-border-radius);
+    border-bottom-right-radius: var(--card-border-radius);
+    color: var(--secondary-text-color);
+    align-self: stretch;
+}
+
 .upper-block {
-    flex: 1 1 auto;
     position: relative;
     background-image: linear-gradient(135deg, #E1E8F4, #88A3D3);
     padding: 40px;
@@ -93,14 +97,7 @@ body {
     color: var(--primary-text-color);
 }
 
-.bottom-block {
-    flex: 1 1 auto;
-    background-image: linear-gradient(45deg, #6C96DA, #254F93);
-    padding: 0 var(--card-primary-padding) var(--card-primary-padding);
-    border-bottom-left-radius: var(--card-border-radius);
-    border-bottom-right-radius: var(--card-border-radius);
-    color: var(--secondary-text-color);
-}
+
 
 .picture-container {
     position: absolute;
